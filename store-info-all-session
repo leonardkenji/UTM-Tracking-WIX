@@ -1,0 +1,57 @@
+//Put the code in the Master Page
+//After getting the parameter from the lading page, store the information during the session and add it to any form of the website that has the same ID. 
+
+import wixLocationFrontend from 'wix-location-frontend';
+import { session } from 'wix-storage';
+
+
+$w.onReady(function () {
+    try {
+        const query = wixLocationFrontend.query;
+
+
+        // Check if UTM values are present in the URL and store them in session storage
+        if (query.utm_medium) {
+            session.setItem('utm_medium', decodeURIComponent(query.utm_medium));
+            console.log("utm_medium found and stored in session.");
+        }
+        if (query.utm_campaign) {
+            session.setItem('utm_campaign', decodeURIComponent(query.utm_campaign));
+            console.log("utm_campaign found and stored in session.");
+        }
+        if (query.utm_content) {
+            session.setItem('utm_content', decodeURIComponent(query.utm_content));
+            console.log("utm_content found and stored in session.");
+        }
+        if (query.utm_source) {
+            session.setItem('utm_source', decodeURIComponent(query.utm_source));
+            console.log("utm_source found and stored in session.");
+        }
+        if (query.utm_term) {
+            session.setItem('utm_term', decodeURIComponent(query.utm_term));
+            console.log("utm_term found and stored in session.");
+        }
+
+
+        // Retrieve stored values from session and set them to the respective textboxes
+        if (session.getItem('utm_medium')) {
+            $w('#source').value = session.getItem('utm_medium');
+        }
+        if (session.getItem('utm_campaign')) {
+            $w('#cf_utm_campaign').value = session.getItem('utm_campaign');
+        }
+        if (session.getItem('utm_content')) {
+            $w('#cf_utm_content').value = session.getItem('utm_content');
+        }
+        if (session.getItem('utm_source')) {
+            $w('#cf_utm_source').value = session.getItem('utm_source');
+        }
+        if (session.getItem('utm_term')) {
+            $w('#cf_utm_term').value = session.getItem('utm_term');
+        }
+
+
+    } catch (error) {
+        console.error("An error occurred:", error);
+    }
+});
