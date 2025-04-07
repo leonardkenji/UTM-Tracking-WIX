@@ -1,0 +1,68 @@
+//Code mostly made by research and AI debug
+//Gte the information from the URL UTM parameter and add it to the text selected textbox. Add it to the Landing Page.
+import wixLocationFrontend from 'wix-location-frontend';
+
+$w.onReady(function () {
+    try {
+        const query = wixLocationFrontend.query;
+
+
+        // utm_medium
+        if (query.utm_medium) {
+            $w('#source').value = decodeURIComponent(query.utm_medium);
+            console.log("utm_medium found. Textbox 'source' value set.");
+        } else {
+            console.log("utm_medium not found in URL.");
+        }
+        console.log("Medium:", $w('#source').value);
+        console.log("source element:", $w('#source'));
+
+
+        // utm_campaign
+        if (query.utm_campaign) {
+            $w('#cf_utm_campaign').value = decodeURIComponent(query.utm_campaign);
+            console.log("utm_campaign found. Textbox 'cf_utm_campaign' value set.");
+        } else {
+            console.log("utm_campaign not found in URL.");
+        }
+        console.log("Campaign:", $w('#cf_utm_campaign').value);
+        console.log("cf_utm_campaign element:", $w('#cf_utm_campaign'));
+
+
+        // utm_content
+        if (query.utm_content) {
+            $w('#cf_utm_content').value = decodeURIComponent(query.utm_content);
+            console.log("utm_content found. Textbox 'cf_utm_content' value set.");
+        } else {
+            console.log("utm_content not found in URL.");
+        }
+        console.log("Content:", $w('#cf_utm_content').value);
+        console.log("cf_utm_content element:", $w('#cf_utm_content'));
+
+
+        // utm_source
+        if (query.utm_source) {
+            $w('#cf_utm_source').value = decodeURIComponent(query.utm_source);
+            console.log("utm_source found. Textbox 'cf_utm_source' value set.");
+        } else {
+            console.log("utm_source not found in URL.");
+        }
+        console.log("Source:", $w('#cf_utm_source').value);
+        console.log("cf_utm_source element:", $w('#cf_utm_source'));
+
+
+        // utm_term
+        if (query.utm_term) {
+            $w('#cf_utm_term').value = decodeURIComponent(query.utm_term);
+            console.log("utm_term found. Textbox 'cf_utm_term' value set.");
+        } else {
+            console.log("utm_term not found in URL.");
+        }
+        console.log("Term:", $w('#cf_utm_term').value);
+        console.log("cf_utm_term element:", $w('#cf_utm_term'));
+
+
+    } catch (error) {
+        console.error("An error occurred:", error);
+    }
+});
